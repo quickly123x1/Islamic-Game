@@ -55,6 +55,61 @@ const QUESTIONS = [
 QUESTIONS[1][8]={q:"إذا كان مجموع عددين 18 والفرق بينهما 4، فما العدد الأكبر؟",a:["7","9","11","13"],c:2,e:"العددان 11 و7؛ مجموعهما 18 والفرق بينهما 4.",fix:true};
 QUESTIONS[1][13]={q:"إذا كان أمس هو اليوم الذي يسبق الخميس بيومين، فما اليوم؟",a:["الثلاثاء","الأربعاء","الخميس","الجمعة"],c:1,e:"اليوم الذي يسبق الخميس بيومين هو الثلاثاء؛ إذا كان أمس الثلاثاء فاليوم الأربعاء."};
 
+// بنك إضافي للأسئلة المتجددة: تُختار 15 من كل مستوى يوميًا بنفس الترتيب لجميع اللاعبين.
+QUESTIONS[0].push(
+{q:"ما أول ما نزل من القرآن الكريم؟",a:["الفاتحة","اقرأ باسم ربك","المدثر","الإخلاص"],c:1,e:"أول ما نزل صدر سورة العلق: اقرأ باسم ربك."},
+{q:"كم عدد أركان الإيمان؟",a:["خمسة","ستة","سبعة","ثمانية"],c:1,e:"أركان الإيمان ستة."},
+{q:"من النبي الذي كلمه الله تكليمًا؟",a:["إبراهيم","موسى","عيسى","يوسف"],c:1,e:"موسى عليه السلام كليم الله."},
+{q:"ما اسم أم النبي محمد ﷺ؟",a:["خديجة","آمنة بنت وهب","حليمة السعدية","فاطمة"],c:1,e:"والدة النبي ﷺ هي آمنة بنت وهب."},
+{q:"في أي مدينة وُلد النبي ﷺ؟",a:["المدينة","الطائف","مكة","القدس"],c:2,e:"وُلد النبي ﷺ في مكة المكرمة."},
+{q:"ما السورة التي تعدل ثلث القرآن؟",a:["الفلق","الإخلاص","الكوثر","العصر"],c:1,e:"ورد في الحديث أن سورة الإخلاص تعدل ثلث القرآن."},
+{q:"من هو النبي الذي بنى السفينة؟",a:["هود","نوح","صالح","شعيب"],c:1,e:"أمر الله نوحًا عليه السلام بصنع السفينة."},
+{q:"ما اسم الليلة التي نزل فيها القرآن؟",a:["ليلة النصف","ليلة القدر","ليلة الإسراء","ليلة الجمعة"],c:1,e:"أنزل القرآن في ليلة القدر."},
+{q:"كم ركعة في صلاة الفجر المفروضة؟",a:["ركعتان","ثلاث","أربع","خمس"],c:0,e:"صلاة الفجر ركعتان فرضًا."},
+{q:"من الصحابي الذي لُقب بالفاروق؟",a:["أبو بكر","عمر بن الخطاب","عثمان","علي"],c:1,e:"عمر بن الخطاب رضي الله عنه لُقب بالفاروق."},
+{q:"ما اسم والد النبي إبراهيم؟",a:["آزر","يعقوب","عمران","عبد الله"],c:0,e:"ورد اسم آزر في القرآن الكريم."},
+{q:"ما السورة التي تسمى قلب القرآن في الحديث المشهور؟",a:["يس","الرحمن","الملك","مريم"],c:0,e:"اشتهر هذا الوصف لسورة يس، والحديث الوارد فيه ضعيف."}
+);
+QUESTIONS[1].push(
+{q:"ما العدد الذي يكمل النمط 3، 6، 12، 24، ...؟",a:["30","36","48","54"],c:2,e:"يتضاعف العدد في كل خطوة؛ التالي 48."},
+{q:"إذا كان 5 عمال ينجزون عملًا في 10 أيام، فكم يومًا يحتاج 10 عمال بالمعدل نفسه؟",a:["2","5","10","20"],c:1,e:"مضاعفة عدد العمال تنصف الزمن إلى 5 أيام."},
+{q:"أي عدد أولي؟",a:["21","27","29","33"],c:2,e:"29 لا يقبل القسمة إلا على 1 ونفسه."},
+{q:"إذا كان محيط مربع 36 سم، فما طول ضلعه؟",a:["6 سم","8 سم","9 سم","12 سم"],c:2,e:"طول الضلع يساوي المحيط ÷ 4 = 9 سم."},
+{q:"كم زاوية قائمة في المستطيل؟",a:["اثنتان","ثلاث","أربع","خمس"],c:2,e:"للمستطيل أربع زوايا قائمة."},
+{q:"ما ناتج 15% من 200؟",a:["15","20","30","40"],c:2,e:"0.15 × 200 = 30."},
+{q:"إذا كانت كل الورود نباتات، وبعض النباتات خضراء، فهل يلزم أن كل الورود خضراء؟",a:["نعم دائمًا","لا يلزم","لا توجد ورود","كل النباتات ورود"],c:1,e:"المعلومة لا تثبت أن جميع الورود خضراء."},
+{q:"ما العدد التالي: 1، 8، 27، 64، ...؟",a:["100","125","144","216"],c:1,e:"هذه مكعبات 1 و2 و3 و4؛ التالي 5³ = 125."},
+{q:"إذا كان اليوم الاثنين، فما اليوم بعد 17 يومًا؟",a:["الثلاثاء","الأربعاء","الخميس","الجمعة"],c:2,e:"17 يومًا تساوي أسبوعين وثلاثة أيام؛ الاثنين + 3 = الخميس."},
+{q:"كم ضلعًا للشكل السداسي؟",a:["خمسة","ستة","سبعة","ثمانية"],c:1,e:"السداسي له ستة أضلاع."},
+{q:"ما ناتج 7 × 8؟",a:["54","56","58","64"],c:1,e:"7 × 8 = 56."},
+{q:"إذا كان س = 4، فما قيمة 3س + 2؟",a:["10","12","14","16"],c:2,e:"3 × 4 + 2 = 14."}
+);
+QUESTIONS[2].push(
+{q:"ما أقرب نجم إلى الأرض؟",a:["الشعرى","الشمس","النجم القطبي","سيريوس"],c:1,e:"الشمس أقرب نجم إلى الأرض."},
+{q:"ما العضية المسؤولة عن إنتاج معظم طاقة الخلية؟",a:["النواة","الميتوكوندريا","الريبوسوم","جهاز غولجي"],c:1,e:"الميتوكوندريا تنتج معظم ATP في الخلايا حقيقية النواة."},
+{q:"ما الصيغة الكيميائية للماء؟",a:["CO₂","O₂","H₂O","NaCl"],c:2,e:"يتكون الماء من ذرتي هيدروجين وذرة أكسجين."},
+{q:"ما وحدة قياس شدة التيار الكهربائي؟",a:["الفولت","الأمبير","الأوم","الواط"],c:1,e:"تقاس شدة التيار بوحدة الأمبير."},
+{q:"أي عضو ينقي الدم من الفضلات ويكوّن البول؟",a:["القلب","الكليتان","المعدة","الرئتان"],c:1,e:"تقوم الكليتان بترشيح الدم وتكوين البول."},
+{q:"ما الكوكب الأكبر في المجموعة الشمسية؟",a:["الأرض","زحل","المشتري","نبتون"],c:2,e:"المشتري أكبر كواكب المجموعة الشمسية."},
+{q:"ما الغاز الذي تمتصه النباتات في البناء الضوئي؟",a:["الأكسجين","النيتروجين","ثاني أكسيد الكربون","الهيدروجين"],c:2,e:"تمتص النباتات ثاني أكسيد الكربون وتستخدمه في البناء الضوئي."},
+{q:"ما درجة غليان الماء عند الضغط الجوي القياسي؟",a:["0°م","50°م","100°م","150°م"],c:2,e:"يغلي الماء عند 100 درجة مئوية عند ضغط جوي قياسي."},
+{q:"أي معدن يكون سائلًا قرب درجة حرارة الغرفة؟",a:["الحديد","النحاس","الزئبق","الألمنيوم"],c:2,e:"الزئبق معدن سائل قرب درجة حرارة الغرفة."},
+{q:"ما الجزء الذي يحمل المعلومات الوراثية؟",a:["DNA","النشا","الماء","الدهون"],c:0,e:"يحمل الحمض النووي DNA المعلومات الوراثية."},
+{q:"ما اسم تحول السائل إلى غاز من سطحه؟",a:["التجمد","التكاثف","التبخر","الانصهار"],c:2,e:"التبخر تحول السائل إلى غاز من سطحه."},
+{q:"أي فيتامين يساعد الجسم على امتصاص الكالسيوم؟",a:["فيتامين A","فيتامين B12","فيتامين C","فيتامين D"],c:3,e:"يساعد فيتامين D على امتصاص الكالسيوم."}
+);
+
+function seededDailyQuestions(level, date=today()) {
+  const source = QUESTIONS[level].slice();
+  let seed = 2166136261;
+  const key = date + "-level-" + level;
+  for (let i=0;i<key.length;i++) { seed ^= key.charCodeAt(i); seed = Math.imul(seed,16777619); }
+  const random = () => { seed += 0x6D2B79F5; let t=seed; t=Math.imul(t^(t>>>15),t|1); t^=t+Math.imul(t^(t>>>7),t|61); return ((t^(t>>>14))>>>0)/4294967296; };
+  for(let i=source.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[source[i],source[j]]=[source[j],source[i]];}
+  return source.slice(0,15);
+}
+let ACTIVE_QUESTIONS = [0,1,2].map(i=>seededDailyQuestions(i));
+
 const STORE=[
 {id:"hint",name:"تلميح ذهبي",desc:"يعرض تلميحًا لسؤال أثناء اللعب.",price:3,icon:"💡",rarity:"common",label:"عادي"},
 {id:"remove",name:"حذف خيار",desc:"يساعدك على استبعاد خيارين خاطئين.",price:5,icon:"✂️",rarity:"rare",label:"نادر"},
@@ -80,25 +135,26 @@ const DAILY=[
 ];
 let state=null,currentLevel=0,currentIndex=0,streak=0,selected=false,usedHelp=false,questionOrder=[];
 const SAVE_KEY="islamicChallengeSaveV1";
-function freshState(name){return {name,totalPoints:0,coins:0,correct:0,answered:0,bestStreak:0,levelScores:[null,null,null],levelProgress:[0,0,0],levelRunCorrect:[0,0,0],earnedQuestions:[],unlocked:0,purchases:[],claimedTasks:[],dailyDate:today(),dailyProgress:{correct5:0,play1:0,streak3:0},achievements:[],lastLevel:-1};}
-function today(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;}
+function seasonKey(date=today()){return date.slice(0,7);}
+function freshState(name){return {name,totalPoints:0,seasonPoints:0,seasonKey:seasonKey(),seasonHistory:[],coins:0,correct:0,answered:0,bestStreak:0,levelScores:[null,null,null],levelProgress:[0,0,0],levelRunCorrect:[0,0,0],earnedQuestions:[],unlocked:0,purchases:[],claimedTasks:[],dailyDate:today(),dailyProgress:{correct5:0,play1:0,streak3:0},achievements:[],lastLevel:-1};}
+function today(){const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Baghdad",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());const v={};parts.forEach(p=>v[p.type]=p.value);return `${v.year}-${v.month}-${v.day}`;}
 function save(){if(state){localStorage.setItem(SAVE_KEY,JSON.stringify(state));if(window.onlineSyncState)window.onlineSyncState(state);}}
 function load(){try{return JSON.parse(localStorage.getItem(SAVE_KEY)||"null")}catch(e){return null}}
 function startGuest(){const name=document.getElementById("playerName").value.trim();if(!name){notify("اكتب اسم اللاعب","يرجى إدخال اسم قبل البدء.","✍️");return}state=freshState(name);save();enterGame();}
 function resumeGame(){state=load();if(!state)return;refreshDaily();enterGame();}
 function enterGame(){document.getElementById("bottomNav").classList.remove("hidden");renderHome();showPage("home");}
 function accountNotice(){notify("الحساب الشخصي قيد الإعداد","هذه النسخة تحفظ تقدم الضيف على الجهاز نفسه. تسجيل الحساب والمزامنة بين الأجهزة يحتاجان ربط قاعدة بيانات في المرحلة التالية.","🔐")}
-function showPage(page){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const el=document.getElementById(page+"Page");if(el)el.classList.add("active");document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="home")renderHome();if(page==="shop")renderShop();if(page==="tasks")renderTasks();if(page==="profile")renderProfile();if(page==="achievements")renderAchievements();if(page==="leaderboard"&&window.loadLeaderboard)window.loadLeaderboard();window.scrollTo({top:0,behavior:"smooth"});}
-function refreshDaily(){const t=today();if(state.dailyDate!==t){state.dailyDate=t;state.dailyProgress={correct5:0,play1:0,streak3:0};state.claimedTasks=[];save();}}
+function showPage(page){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const el=document.getElementById(page+"Page");if(el)el.classList.add("active");document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="home")renderHome();if(page==="shop")renderShop();if(page==="tasks")renderTasks();if(page==="profile")renderProfile();if(page==="achievements")renderAchievements();if(page==="leaderboard"&&window.loadLeaderboard)window.loadLeaderboard();if(page==="friends"&&window.loadFriends)window.loadFriends();if(page==="chat"&&window.openGroupChat)window.openGroupChat();window.scrollTo({top:0,behavior:"smooth"});}
+function refreshDaily(){const t=today();if(!state.dailyDate)state.dailyDate=t;if(state.dailyDate!==t){state.dailyDate=t;state.dailyProgress={correct5:0,play1:0,streak3:0};state.claimedTasks=[];state.levelProgress=[0,0,0];state.levelRunCorrect=[0,0,0];state.levelScores=[null,null,null];ACTIVE_QUESTIONS=[0,1,2].map(i=>seededDailyQuestions(i,t));save();}const sk=seasonKey(t);if(state.seasonKey!==sk){state.seasonHistory=state.seasonHistory||[];if(state.seasonKey)state.seasonHistory.push({key:state.seasonKey,points:state.seasonPoints||0});state.seasonHistory=state.seasonHistory.slice(-24);state.seasonKey=sk;state.seasonPoints=0;save();}}
 function renderHome(){if(!state)return;refreshDaily();document.getElementById("homeName").textContent=state.name;document.getElementById("totalPoints").textContent=state.totalPoints;document.getElementById("coinBalance").textContent=state.coins;document.getElementById("coinCount").textContent=state.coins;document.getElementById("achievementCount").textContent=state.achievements.length;for(let i=0;i<3;i++){let score=state.levelScores[i],progress=score===null?state.levelProgress[i]:15;document.getElementById("progress"+i).style.width=(progress/15*100)+"%";let btn=document.getElementById("level"+(i+1)+"Btn"),status=document.getElementById("level"+(i+1)+"Status");if(i<=state.unlocked){btn.disabled=false;btn.textContent=score===null&&progress>0?"متابعة ←":score!==null?"إعادة اللعب":"ابدأ ←";status.textContent=score!==null?`مكتمل • ${score}/15`:progress>0?`السؤال ${progress+1}/15`:"متاح"}else{btn.disabled=true;btn.textContent="مقفل";status.textContent="مقفل"}}}
 function openLevel(level){if(level>state.unlocked){notify("هذا المستوى مقفل","أكمل المستوى السابق بنتيجة 12/15 على الأقل لفتحه.","🔒");return}if(state.levelScores[level]!==null){notify("أكملت هذا المستوى بالفعل",`نتيجتك السابقة: ${state.levelScores[level]}/15.`,"🏅");return}currentLevel=level;if(state.levelProgress[level]>=15){state.levelProgress[level]=0;state.levelRunCorrect[level]=0;}currentIndex=state.levelProgress[level];streak=0;showPage("quiz");renderQuestion();}
-function renderQuestion(){selected=false;usedHelp=false;const q=QUESTIONS[currentLevel][currentIndex];document.getElementById("quizLevelName").textContent=["الثقافة الإسلامية","تحدي الذكاء","العلوم والمعرفة"][currentLevel];document.getElementById("difficultyLabel").textContent=currentIndex<5?"سهل":currentIndex<10?"متوسط":"صعب";document.getElementById("questionCounter").textContent=`السؤال ${currentIndex+1} / 15`;document.getElementById("questionNumber").textContent=`السؤال ${String(currentIndex+1).padStart(2,"0")}`;document.getElementById("questionText").textContent=q.q;document.getElementById("quizProgress").style.width=((currentIndex)/15*100)+"%";document.getElementById("quizCoins").textContent=state.coins;document.getElementById("streakCount").textContent=streak;document.getElementById("feedback").className="feedback hidden";document.getElementById("nextBtn").classList.add("hidden");const box=document.getElementById("answers");box.innerHTML="";q.a.forEach((a,i)=>{const b=document.createElement("button");b.className="answer-btn";b.textContent=`${["أ","ب","ج","د"][i]} — ${a}`;b.onclick=()=>answer(i);box.appendChild(b)});}
-function answer(index){if(selected)return;selected=true;const q=QUESTIONS[currentLevel][currentIndex],buttons=[...document.querySelectorAll(".answer-btn")],good=index===q.c;buttons.forEach((b,i)=>{b.disabled=true;if(i===q.c)b.classList.add("correct");if(i===index&&!good)b.classList.add("wrong")});state.answered++;state.dailyProgress.play1++;if(good){const earnedKey=`${currentLevel}-${currentIndex}`;state.dailyProgress.correct5++;if(!state.earnedQuestions.includes(earnedKey)){state.earnedQuestions.push(earnedKey);state.correct++;state.totalPoints++;state.coins++;}streak++;state.bestStreak=Math.max(state.bestStreak,streak);if(streak>=3)state.dailyProgress.streak3=Math.max(state.dailyProgress.streak3,streak);document.getElementById("feedback").className="feedback good";document.getElementById("feedback").textContent="إجابة صحيحة! +1 نقطة وعملة. "+q.e}else{streak=0;document.getElementById("feedback").className="feedback bad";document.getElementById("feedback").textContent="إجابة غير صحيحة. "+q.e}document.getElementById("streakCount").textContent=streak;document.getElementById("quizCoins").textContent=state.coins;document.getElementById("nextBtn").textContent=currentIndex===14?"عرض النتيجة ←":"السؤال التالي ←";document.getElementById("nextBtn").classList.remove("hidden");checkAchievements();save();}
+function renderQuestion(){selected=false;usedHelp=false;const q=ACTIVE_QUESTIONS[currentLevel][currentIndex];document.getElementById("quizLevelName").textContent=["الثقافة الإسلامية","تحدي الذكاء","العلوم والمعرفة"][currentLevel];document.getElementById("difficultyLabel").textContent=currentIndex<5?"سهل":currentIndex<10?"متوسط":"صعب";document.getElementById("questionCounter").textContent=`السؤال ${currentIndex+1} / 15`;document.getElementById("questionNumber").textContent=`السؤال ${String(currentIndex+1).padStart(2,"0")}`;document.getElementById("questionText").textContent=q.q;document.getElementById("quizProgress").style.width=((currentIndex)/15*100)+"%";document.getElementById("quizCoins").textContent=state.coins;document.getElementById("streakCount").textContent=streak;document.getElementById("feedback").className="feedback hidden";document.getElementById("nextBtn").classList.add("hidden");const box=document.getElementById("answers");box.innerHTML="";q.a.forEach((a,i)=>{const b=document.createElement("button");b.className="answer-btn";b.textContent=`${["أ","ب","ج","د"][i]} — ${a}`;b.onclick=()=>answer(i);box.appendChild(b)});}
+function answer(index){if(selected)return;selected=true;const q=ACTIVE_QUESTIONS[currentLevel][currentIndex],buttons=[...document.querySelectorAll(".answer-btn")],good=index===q.c;buttons.forEach((b,i)=>{b.disabled=true;if(i===q.c)b.classList.add("correct");if(i===index&&!good)b.classList.add("wrong")});state.answered++;state.dailyProgress.play1++;if(good){const earnedKey=`${state.dailyDate}-${currentLevel}-${currentIndex}`;state.dailyProgress.correct5++;if(!state.earnedQuestions.includes(earnedKey)){state.earnedQuestions.push(earnedKey);state.correct++;state.totalPoints++;state.seasonPoints=(state.seasonPoints||0)+1;state.coins++;}streak++;state.bestStreak=Math.max(state.bestStreak,streak);if(streak>=3)state.dailyProgress.streak3=Math.max(state.dailyProgress.streak3,streak);document.getElementById("feedback").className="feedback good";document.getElementById("feedback").textContent="إجابة صحيحة! +1 نقطة وعملة. "+q.e}else{streak=0;document.getElementById("feedback").className="feedback bad";document.getElementById("feedback").textContent="إجابة غير صحيحة. "+q.e}document.getElementById("streakCount").textContent=streak;document.getElementById("quizCoins").textContent=state.coins;document.getElementById("nextBtn").textContent=currentIndex===14?"عرض النتيجة ←":"السؤال التالي ←";document.getElementById("nextBtn").classList.remove("hidden");checkAchievements();save();}
 function nextQuestion(){if(currentIndex===14){finishLevel();return}currentIndex++;state.levelProgress[currentLevel]=currentIndex;save();renderQuestion();}
-function finishLevel(){const score=QUESTIONS[currentLevel].reduce((sum,q,i)=>sum+(i<currentIndex?0:0),0); // score computed from correct answers recorded for this run
+function finishLevel(){const score=0; // score computed from correct answers recorded for this run
 const runScore=state.levelRunCorrect[currentLevel];state.levelScores[currentLevel]=runScore>=12?runScore:null;state.levelProgress[currentLevel]=15;if(runScore>=12&&currentLevel<2)state.unlocked=Math.max(state.unlocked,currentLevel+1);state.lastLevel=currentLevel;state.coins+=5;checkAchievements();save();document.getElementById("finalScore").textContent=runScore;document.getElementById("resultTitle").textContent=runScore>=12?"إنجاز رائع!":"أحسنت المحاولة!";document.getElementById("resultSubtitle").textContent=`نتيجتك في ${["الثقافة الإسلامية","تحدي الذكاء","العلوم والمعرفة"][currentLevel]}`;document.getElementById("unlockMessage").textContent=runScore>=12?(currentLevel<2?"لقد فتحت المستوى التالي!":"لقد أكملت جميع المستويات!"): "تحتاج إلى 12 نقطة على الأقل لفتح المستوى التالي. يمكنك إعادة المحاولة.";document.getElementById("chestReward").classList.remove("hidden");document.getElementById("chestReward").textContent="🎁 حصلت على صندوق مستوى + 5 عملات!";showPage("result");if(state.totalPoints>=45&&!state.legendaryShown){state.legendaryShown=true;save();setTimeout(()=>flash("LEGENDARY!","حصلت على الوسام الأسطوري بعد جمع 45 نقطة."),700)}}
 const oldAnswer=answer;
-answer=function(index){if(selected)return;const q=QUESTIONS[currentLevel][currentIndex];if(index===q.c)state.levelRunCorrect[currentLevel]++;oldAnswer(index);state.levelProgress[currentLevel]=currentIndex+1;save();};
+answer=function(index){if(selected)return;const q=ACTIVE_QUESTIONS[currentLevel][currentIndex];if(index===q.c)state.levelRunCorrect[currentLevel]++;oldAnswer(index);state.levelProgress[currentLevel]=currentIndex+1;save();};
 function renderShop(){document.getElementById("shopCoins").textContent=state.coins;document.getElementById("shopItems").innerHTML=STORE.map(x=>{let owned=state.purchases.includes(x.id);return `<article class="shop-item panel"><div class="item-art">${x.icon}</div><span class="rarity ${x.rarity}">${x.label}</span><h3>${x.name}</h3><p class="muted">${x.desc}</p><div class="buy-row"><span class="wallet">◆ ${x.price}</span><button class="buy-btn" ${owned||state.coins<x.price?"disabled":""} onclick="buyItem('${x.id}')">${owned?"تم الشراء":state.coins<x.price?"رصيد غير كافٍ":"شراء"}</button></div></article>`}).join("")}
 function buyItem(id){
  const item=STORE.find(x=>x.id===id);
@@ -116,7 +172,7 @@ function buyItem(id){
 function renderTasks(){refreshDaily();document.getElementById("taskDate").textContent=state.dailyDate;document.getElementById("taskList").innerHTML=DAILY.map(t=>{let p=Math.min(state.dailyProgress[t.id]||0,t.goal),claimed=state.claimedTasks.includes(t.id),done=p>=t.goal;return `<article class="task-item panel"><div class="task-icon">${t.icon}</div><div class="task-info"><b>${t.name}</b><small>${t.desc} • ${p}/${t.goal}</small><div class="progress" style="margin-top:8px"><i style="width:${p/t.goal*100}%"></i></div></div><button class="claim-btn" ${!done||claimed?"disabled":""} onclick="claimTask('${t.id}')">${claimed?"تم الاستلام":`+${t.reward} ◆`}</button></article>`}).join("")}
 function claimTask(id){const t=DAILY.find(x=>x.id===id);if(!t||state.claimedTasks.includes(id)||state.dailyProgress[id]<t.goal)return;state.claimedTasks.push(id);state.coins+=t.reward;save();renderTasks();renderHome();notify("مكافأة المهمة","أضيفت "+t.reward+" عملات إلى رصيدك.","🎁")}
 function renderProfile(){
- document.getElementById("profileName").textContent=state.name;
+ document.getElementById("profileName").textContent=state.name;const editName=document.getElementById("editPlayerName");if(editName && document.activeElement!==editName)editName.value=state.name;
  document.getElementById("profilePoints").textContent=state.totalPoints;
  document.getElementById("profileCorrect").textContent=state.correct;
  document.getElementById("profileStreak").textContent=state.bestStreak;
@@ -147,3 +203,80 @@ window.addEventListener("load",()=>{const saved=load();if(saved){document.getEle
 
 // جسر آمن بين منطق اللعبة وملف الاتصال السحابي.
 window.gameBridge={getState:()=>state,setState:(next)=>{state=next;save();enterGame();},freshState:(name)=>freshState(name),save:()=>save(),enterGame:()=>enterGame(),getSaveKey:()=>SAVE_KEY};
+
+// ===== تحديث تخصيص الشخصية 1.1 =====
+STORE.push(
+  {id:"avatarowl",name:"شخصية البومة الحكيمة",desc:"صورة رمزية للبومة",price:10,icon:"🦉",rarity:"rare",label:"نادر"},
+  {id:"avatarfox",name:"شخصية الثعلب الذكي",desc:"صورة رمزية للثعلب",price:12,icon:"🦊",rarity:"epic",label:"ملحمي"},
+  {id:"titlethinker",name:"لقب المفكر",desc:"لقب خاص يظهر في ملفك",price:8,icon:"🧠",rarity:"rare",label:"نادر"},
+  {id:"titlelegend",name:"لقب صانع المعرفة",desc:"لقب مميز ونادر",price:20,icon:"📚",rarity:"legendary",label:"أسطوري"}
+);
+
+function equipItem(id) {
+  if (!state || !state.purchases.includes(id)) {
+    notify("العنصر غير مملوك", "اشترِ العنصر أولًا من المتجر.");
+    return;
+  }
+  if (id === "avatarowl" || id === "avatarfox") state.equippedAvatar = id;
+  if (id === "titlethinker" || id === "titlelegend") state.equippedTitle = id;
+  save();
+  renderProfile();
+  notify("تم التجهيز", "تم تحديث ملفك الشخصي بنجاح.", "✨");
+}
+
+const renderProfileBeforeCustomization = renderProfile;
+renderProfile = function () {
+  if (!state) return;
+  renderProfileBeforeCustomization();
+
+  const avatar = document.getElementById("profileAvatar");
+  if (avatar) {
+    avatar.textContent = state.equippedAvatar === "avatarowl" ? "🦉" :
+      state.equippedAvatar === "avatarfox" ? "🦊" :
+      state.purchases.includes("aura") ? "✧" : "✦";
+  }
+
+  const equippedBox = document.getElementById("profileEquipped");
+  if (equippedBox) {
+    let titleBox = document.getElementById("equippedTitleLabel");
+    if (!titleBox) {
+      titleBox = document.createElement("div");
+      titleBox.id = "equippedTitleLabel";
+      titleBox.className = "equipped-items";
+      equippedBox.insertAdjacentElement("afterend", titleBox);
+    }
+    titleBox.textContent = state.equippedTitle === "titlethinker" ? "🧠 المفكر" :
+      state.equippedTitle === "titlelegend" ? "📚 صانع المعرفة" : "";
+  }
+
+  const hero = document.querySelector("#profilePage .profile-hero");
+  if (!hero) return;
+  let box = document.getElementById("customizeList");
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "customizeList";
+    box.className = "panel";
+    box.style.cssText = "padding:20px;margin:25px 0";
+    hero.insertAdjacentElement("afterend", box);
+  }
+
+  const items = STORE.filter(item =>
+    ["avatarowl", "avatarfox", "titlethinker", "titlelegend"].includes(item.id)
+  );
+  box.innerHTML = `<h2>🎨 تخصيص الشخصية</h2>
+    <p class="muted">اختر شخصيتك ولقبك المفضل</p>
+    ${items.map(item => {
+      const owned = state.purchases.includes(item.id);
+      const equipped = state.equippedAvatar === item.id || state.equippedTitle === item.id;
+      return `<div style="padding:12px;margin:10px 0;border:1px solid #34445f;border-radius:12px">
+        <div style="font-size:24px">${item.icon}</div>
+        <b>${item.name}</b>
+        <p class="muted">${item.label} • ${item.price} عملات</p>
+        ${owned
+          ? `<button class="small-btn" onclick="equipItem('${item.id}')">${equipped ? "مجهز ✓" : "تجهيز"}</button>`
+          : `<span class="muted">اشترِ العنصر من المتجر</span>`}
+      </div>`;
+    }).join("")}`;
+};
+
+console.log("Islamic Challenge Update 1.1 Loaded");
