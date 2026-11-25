@@ -29,6 +29,8 @@
           <button class="primary-btn full" onclick="startGuest()">ابدأ كضيف <span>←</span></button>
           <div class="or-line"><span>أو</span></div>
           <div class="online-auth">
+            <label for="accountUsername">اسم اللاعب للحساب (فريد)</label>
+            <input id="accountUsername" maxlength="18" autocomplete="nickname" placeholder="اسم لا يستخدمه لاعب آخر">
             <label for="accountEmail">البريد الإلكتروني</label>
             <input id="accountEmail" type="email" autocomplete="email" placeholder="name@example.com">
             <label for="accountPassword">كلمة المرور</label>
@@ -116,15 +118,42 @@
       <div class="section-heading"><div><div class="eyebrow">رحلتك</div><h2>تقدم المستويات</h2></div></div><div id="profileLevels" class="profile-levels panel"></div>
       <div class="section-heading"><div><div class="eyebrow">مجموعتك</div><h2>الأوسمة</h2></div></div><div id="badgeList" class="badge-list"></div>
       <div class="section-heading"><div><div class="eyebrow">مقتنياتك</div><h2>العناصر المشتراة</h2></div></div><div id="inventoryList" class="inventory-list panel"></div>
+      <div class="panel profile-edit-panel">
+        <h2>تعديل الملف الشخصي</h2>
+        <p class="muted">يمكنك تغيير اسم اللاعب. يجب أن يكون الاسم غير مستخدم من لاعب آخر.</p>
+        <label for="editPlayerName">اسم اللاعب</label>
+        <input id="editPlayerName" maxlength="18" placeholder="اسم اللاعب الجديد">
+        <button class="primary-btn full" onclick="onlineUpdateProfile()">حفظ التعديلات</button>
+        <p id="profileEditStatus" class="tiny muted"></p>
+      </div>
       <button class="secondary-btn full danger-btn" onclick="resetProgress()">مسح التقدم والبدء من جديد</button>
     </section>
 
     <section id="leaderboardPage" class="page">
-      <div class="section-heading"><div><div class="eyebrow">نافس لاعبين من كل مكان</div><h1>لوحة المتصدرين</h1></div><span class="pill">عالمي</span></div>
-      <p class="muted">أفضل 50 لاعبًا حسب مجموع النقاط. يجب تسجيل الدخول بحساب حتى يظهر اسمك هنا.</p>
+      <div class="section-heading"><div><div class="eyebrow">منافسة شهرية تتجدد</div><h1>متصدرّو الموسم</h1></div><span class="pill">عالمي</span></div>
+      <p class="muted">تبدأ المواسم في اليوم الأول من كل شهر بتوقيت العراق. يحصل أصحاب المراكز الثلاثة الأولى على مكافآت الموسم.</p>
       <div id="leaderboardStatus" class="panel leaderboard-status">جارٍ تحميل لوحة المتصدرين...</div>
       <div id="leaderboardList" class="leaderboard-list"></div>
       <button class="secondary-btn full" onclick="loadLeaderboard()">تحديث الترتيب ↻</button>
+    </section>
+
+    <section id="friendsPage" class="page">
+      <div class="section-heading"><div><div class="eyebrow">مجتمع اللاعبين</div><h1>الأصدقاء</h1></div><span class="pill">Friends</span></div>
+      <div class="panel social-panel">
+        <h2>إضافة صديق</h2><p class="muted">اكتب اسم اللاعب كما يظهر في ملفه الشخصي.</p>
+        <div class="social-add-row"><input id="friendUsername" maxlength="18" placeholder="اسم اللاعب"><button class="primary-btn" onclick="sendFriendRequest()">إرسال طلب</button></div>
+        <p id="friendsStatus" class="tiny muted"></p>
+      </div>
+      <div class="section-heading"><h2>طلبات الصداقة</h2></div><div id="friendRequests" class="social-list"></div>
+      <div class="section-heading"><h2>أصدقائي</h2></div><div id="friendsList" class="social-list"></div>
+    </section>
+
+    <section id="chatPage" class="page">
+      <div class="section-heading"><div><div class="eyebrow">تواصل مع اللاعبين</div><h1>المجموعة العامة</h1></div><span class="pill"># عام</span></div>
+      <p class="muted">رسائل المجموعة مرئية لجميع اللاعبين المسجلين. التزم بالاحترام ولا تشارك معلوماتك الشخصية.</p>
+      <div id="chatStatus" class="panel leaderboard-status">جارٍ الاتصال بالمحادثة...</div>
+      <div id="chatMessages" class="chat-messages panel" aria-live="polite"></div>
+      <div class="chat-compose panel"><input id="chatInput" maxlength="500" placeholder="اكتب رسالة للمجموعة..."><button class="primary-btn" onclick="sendChatMessage()">إرسال</button></div>
     </section>
 
     <section id="achievementsPage" class="page">
@@ -139,6 +168,8 @@
     <button onclick="showPage('tasks')" data-page="tasks"><span>▦</span>المهام</button>
     <button onclick="showPage('profile')" data-page="profile"><span>♙</span>ملفي</button>
     <button onclick="showPage('leaderboard')" data-page="leaderboard"><span>🏆</span>المتصدرون</button>
+    <button onclick="showPage('friends')" data-page="friends"><span>👥</span>الأصدقاء</button>
+    <button onclick="showPage('chat')" data-page="chat"><span>💬</span>المجموعة</button>
   </nav>
 
   <div id="modal" class="modal hidden"><div class="modal-card panel"><div id="modalIcon" class="modal-icon">✨</div><h2 id="modalTitle">تم!</h2><p id="modalText" class="muted"></p><button class="primary-btn full" onclick="closeModal()">حسنًا</button></div></div>
@@ -148,4 +179,4 @@
   <script src="script.js"></script>
   <script src="online.js"></script>
 </body>
-</html>
+  </html>
