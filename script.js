@@ -147,3 +147,145 @@ window.addEventListener("load",()=>{const saved=load();if(saved){document.getEle
 
 // جسر آمن بين منطق اللعبة وملف الاتصال السحابي.
 window.gameBridge={getState:()=>state,setState:(next)=>{state=next;save();enterGame();},freshState:(name)=>freshState(name),save:()=>save(),enterGame:()=>enterGame(),getSaveKey:()=>SAVE_KEY};
+
+// ===== تحديث تخصيص الشخصية 1.1 =====
+
+// إضافة عناصر التخصيص إلى المتجر
+STORE.push(
+  {
+    id: "avatarowl",
+    name: "شخصية البومة الحكيمة",
+    desc: "صورة رمزية للبومة",
+    price: 10,
+    icon: "🦉",
+    rarity: "rare",
+    label: "نادر"
+  },
+  {
+    id: "avatarfox",
+    name: "شخصية الثعلب الذكي",
+    desc: "صورة رمزية للثعلب",
+    price: 12,
+    icon: "🦊",
+    rarity: "epic",
+    label: "ملحمي"
+  },
+  {
+    id: "titlethinker",
+    name: "لقب المفكر",
+    desc: "لقب خاص يظهر في ملفك",
+    price: 8,
+    icon: "🧠",
+    rarity: "rare",
+    label: "نادر"
+  },
+  {
+    id: "titlelegend",
+    name: "لقب صانع المعرفة",
+    desc: "لقب مميز ونادر",
+    price: 20,
+    icon: "📚",
+    rarity: "legendary",
+    label: "أسطوري"
+  }
+);
+
+// تجهيز العناصر
+function equipItem(id) {
+  if (!state.purchases.includes(id)) {
+    notify("العنصر غير مملوك", "اشترِ العنصر أولًا من المتجر.");
+    return;
+  }
+
+  if (id === "avatarowl" || id === "avatarfox") {
+    state.equippedAvatar = id;
+  }
+
+  if (id === "titlethinker" || id === "titlelegend") {
+    state.equippedTitle = id;
+  }
+
+  save();
+  renderProfile();
+  notify("تم التجهيز", "تم تحديث ملفك الشخصي بنجاح.", "✨");
+}
+
+// حفظ دالة الملف الشخصي القديمة
+const oldRenderProfile11 = renderProfile;
+
+// تحديث الملف الشخصي
+renderProfile = function () {
+  if (!state) return;
+
+  state.equippedAvatar ||= "default";
+  state.equippedTitle ||= "";
+
+  oldRenderProfile11();
+
+  const avatar = document.getElementById("profileAvatar");
+
+  avatar.textContent =
+    state.equippedAvatar === "avatarowl" ? "🦉" :
+    state.equippedAvatar === "avatarfox" ? "🦊" :
+    state.purchases.includes("aura") ? "✧" : "✦";
+
+  let titleBox = document.getElementById("equippedTitleLabel");
+
+  if (!titleBox) {
+    titleBox = document.createElement("div");
+    titleBox.id = "equippedTitleLabel";
+    titleBox.className = "equipped-items";
+    document.getElementById("profileEquipped")
+      .insertAdjacentElement("afterend", titleBox);
+  }
+
+  titleBox.textContent =
+    state.equippedTitle === "titlethinker" ? "🧠 المفكر" :
+    state.equippedTitle === "titlelegend" ? "📚 صانع المعرفة" : "";
+
+  let box = document.getElementById("customizeList");
+
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "customizeList";
+    box.className = "panel";
+    box.style.padding = "20px";
+    box.style.margin = "25px 0";
+
+    document.querySelector("#profilePage .profile-hero")
+      .insertAdjacentElement("afterend", box);
+  }
+
+  const items = STORE.filter(item =>
+    ["avatarowl", "avatarfox", "titlethinker", "titlelegend"]
+      .includes(item.id)
+  );
+
+  box.innerHTML = `
+    <h2>🎨 تخصيص الشخصية</h2>
+    <p class="muted">اختر شخصيتك ولقبك المفضل</p>
+    ${items.map(item => {
+      const owned = state.purchases.includes(item.id);
+      const equipped =
+        state.equippedAvatar === item.id ||
+        state.equippedTitle === item.id;
+
+      return `
+        <div style="padding:12px;margin:10px 0;border:1px solid #34445f;border-radius:12px">
+          <div style="font-size:24px">${item.icon}</div>
+          <b>${item.name}</b>
+          <p class="muted">${item.label} • ${item.price} عملات</p>
+          ${
+            owned
+              ? `<button class="small-btn" onclick="equipItem('${item.id}')">
+                  ${equipped ? "مجهز ✓" : "تجهيز"}
+                </button>`
+              : `<span class="muted">اشترِ العنصر من المتجر</span>`
+          }
+        </div>
+      `;
+    }).join("")}
+  `;
+};
+
+console.log("Islamic Challenge Update 1.1 Loaded");
