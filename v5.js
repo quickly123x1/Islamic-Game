@@ -570,7 +570,7 @@
   window.v5StartBoss=i=>{
     const v=data(),boss=BOSSES[i];
 
-    if(i>v.boss.unlocked)return;
+    if(!v||!boss||i>v.boss.unlocked)return;
 
     const primary=QUESTIONS.filter(q=>boss.cat==='all'||q.cat===boss.cat);
     const secondary=QUESTIONS.filter(q=>!primary.includes(q));
@@ -578,6 +578,9 @@
 
     const prev=v.boss.attempts[boss.id]||0;
     v.boss.attempts[boss.id]=prev+1;
+
+    // احفظ رقم المحاولة قبل عرض أول سؤال حتى لا تضيع عند إعادة التحميل.
+    saveV5();
 
     const ordered=[1,2,3].flatMap(d=>
       shuffle(
@@ -710,6 +713,8 @@
           b.score
         );
 
+        const firstVictory=!v.boss.defeated.includes(b.boss.id);
+
         v.boss.defeated=[
           ...new Set([...v.boss.defeated,b.boss.id])
         ];
@@ -720,12 +725,16 @@
         );
 
         saveV5();
-        reward(30,25);
+
+        // مكافأة هزيمة الزعيم تُمنح مرة واحدة فقط لكل زعيم.
+        if(firstVictory)reward(30,25);
 
         root.innerHTML=`
           <div class="v5-boss panel">
             <h2>هُزم الزعيم! 👑</h2>
-            <p>أكملت 25 سؤالًا بنجاح وحصلت على 30 نقطة خبرة و25 عملة.</p>
+            <p>${firstVictory
+              ?'أكملت 25 سؤالًا بنجاح وحصلت على 30 نقطة خبرة و25 عملة.'
+              :'أكملت المواجهة مرة أخرى. سبق أن حصلت على مكافأة هذا الزعيم.'}</p>
             <p>لقب الإنجاز: ${esc(b.boss.name)} المنتصر</p>
             <button class="primary-btn full" onclick="v5Tab('boss')">
               متابعة
